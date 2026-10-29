@@ -57,7 +57,8 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
+    implementation(libs.androidx.ui.material3)
+    implementation(libs.material) // മെറ്റീരിയൽ തീം വർക്ക് ചെയ്യാൻ ഇത് ഇവിടെ ചേർത്തിട്ടുണ്ട്
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
