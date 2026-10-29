@@ -22,26 +22,35 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true // പ്രൊഡക്ഷൻ ബിൽഡിനായി ഒപ്റ്റിമൈസേഷൻ എനേബിൾ ചെയ്തു
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
+        debug {
+            isMinifyEnabled = false
+        }
     }
+    
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+    
     kotlinOptions {
         jvmTarget = "17"
     }
+    
     buildFeatures {
         compose = true
     }
+    
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.8"
     }
+    
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -50,16 +59,29 @@ android {
 }
 
 dependencies {
+    // AndroidX & Core Libraries
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
+
+    // Jetpack Compose BOM & UI Elements
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3) // പുതിയതായി ചേർത്തത്
-    implementation("androidx.compose.material:material-icons-extended") // ഐക്കണുകൾക്കായി പുതിയതായി ചേർത്തത്
+    implementation(libs.androidx.material3)
     
+    // Extended Material Icons (Required for advanced UI components)
+    implementation("androidx.compose.material:material-icons-extended")
+
+    // Architecture Components (ViewModel & Lifecycle for UI state)
+    implementation("androidx.lifecycle.lifecycle-viewmodel-compose:2.7.0")
+    implementation("androidx.lifecycle.lifecycle-runtime-compose:2.7.0")
+
+    // Navigation Compose (For handling multiple screens like Chat, Settings, Analytics)
+    implementation("androidx.navigation:navigation-compose:2.7.7")
+
+    // Testing Dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
