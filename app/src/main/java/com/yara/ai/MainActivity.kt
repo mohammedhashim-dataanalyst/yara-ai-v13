@@ -117,13 +117,13 @@ fun YaraMainApp() {
                 NavigationBarItem(
                     selected = selectedTab == 1,
                     onClick = { selectedTab = 1 },
-                    icon = { Icon(Icons.Default.Analytics, contentDescription = "Analytics") },
+                    icon = { Icon(Icons.Default.BarChart, contentDescription = "Analytics") },
                     label = { Text("Analytics") }
                 )
                 NavigationBarItem(
                     selected = selectedTab == 2,
                     onClick = { selectedTab = 2 },
-                    icon = { Icon(Icons.Default.Psychology, contentDescription = "Cluster") },
+                    icon = { Icon(Icons.Default.Hub, contentDescription = "Cluster") },
                     label = { Text("API Cluster") }
                 )
                 NavigationBarItem(
@@ -152,7 +152,6 @@ fun YaraMainApp() {
                             messages.add(ChatMessage(sender = "HASHIM", content = userMsg, isUser = true))
                             inputText = ""
                             
-                            // Neural Response simulation
                             val aiResponse = when {
                                 userMsg.contains("hello", ignoreCase = true) || userMsg.contains("hi", ignoreCase = true) ->
                                     "Hello Boss HASHIM! Ready to execute any code, data analysis, or automated workflow."
@@ -298,7 +297,7 @@ fun FeatureCardScreen(title: String, description: String) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Icon(
-                    Icons.Default.AutoAwesome,
+                    Icons.Default.Star,
                     contentDescription = null,
                     tint = Color(0xFF00E5FF),
                     modifier = Modifier.size(48.dp)
